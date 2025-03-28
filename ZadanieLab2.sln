@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35312.102
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZadanieLab2", "ZadanieLab2.csproj", "{A71741AC-4FF5-4CDF-8386-313DAACF9B08}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Elementy rozwiązania", "Elementy rozwiązania", "{07E7C16D-A7C2-4C1E-B469-B55F0A9DCBEB}"
+	ProjectSection(SolutionItems) = preProject
+		Class1.cs = Class1.cs
+		EmailValidator.cs = EmailValidator.cs
+		InMemoryUserRepository.cs = InMemoryUserRepository.cs
+		IUserRepository.cs = IUserRepository.cs
+		UserRegistrationService.cs = UserRegistrationService.cs
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A71741AC-4FF5-4CDF-8386-313DAACF9B08}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A71741AC-4FF5-4CDF-8386-313DAACF9B08}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A71741AC-4FF5-4CDF-8386-313DAACF9B08}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A71741AC-4FF5-4CDF-8386-313DAACF9B08}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {26758032-7C69-4B89-9981-0ED4E6FF22BC}
+	EndGlobalSection
+EndGlobal
