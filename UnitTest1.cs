@@ -26,7 +26,7 @@ namespace ZadanieLab2
 
 
         [Fact]
-        public void RegisterUser_InvalidEmail_ShouldNotRegisterUser()
+        public void Zad2RegisterUser_InvalidEmail_ShouldNotRegisterUser()
         {
             var service = new UserRegistrationService();
             var email = "invalid-email";
@@ -79,20 +79,20 @@ namespace ZadanieLab2
             repositoryMock.Verify(r => r.Save("test@example.com"), Times.Once);
         }
 
-        [Fact]
-        public void RegisterUser_ExistingUser_ShouldNotCallSave()
-        {
-            var repositoryMock = new Mock<IUserRepository>();
-            repositoryMock.Setup(r =>
-            r.Exists("existing@example.com")).Returns(true);
-            var service = new
-            UserRegistrationServiceWithRepo(repositoryMock.Object);
-            var result = service.RegisterUser("existing@example.com");
-            Assert.False(result);
-            // Sprawdzamy, czy Save NIE zosta³a wywo³ana
-            repositoryMock.Verify(r => r.Save(It.IsAny<string>()),
-            Times.Never);
-        }
+        //[Fact]
+        //public void RegisterUser_ExistingUser_ShouldNotCallSave()
+        //{
+        //    var repositoryMock = new Mock<IUserRepository>();
+        //    repositoryMock.Setup(r =>
+        //    r.Exists("existing@example.com")).Returns(true);
+        //    var service = new
+        //    UserRegistrationServiceWithRepo(repositoryMock.Object);
+        //    var result = service.RegisterUser("existing@example.com");
+        //    Assert.False(result);
+        //    // Sprawdzamy, czy Save NIE zosta³a wywo³ana
+        //    repositoryMock.Verify(r => r.Save(It.IsAny<string>()),
+        //    Times.Never);
+        //}
 
         [Fact]
         public void RegisterUser_EmptyEmail_ShouldThrowArgumentException()
@@ -124,6 +124,51 @@ namespace ZadanieLab2
             .WithMessage("Email cannot be empty*");
         }
 
+
+        //ZADANIA
+        // ZADANIE 1
+        [Fact]
+        public void Zad1RegisterUser_DuplicateEmail()
+        {
+            var repository = new InMemoryUserRepository();
+            var service = new UserRegistrationServiceWithRepo(repository);
+            var email = "duplicate@example.com";
+
+            var firstRegistrationResult = service.RegisterUser(email);
+
+            Assert.True(firstRegistrationResult);
+
+            var exception = Assert.Throws<InvalidOperationException>(() => service.RegisterUser(email));
+            Assert.Equal("User already registered", exception.Message);
+        }
+        //ZADANIE 2
+        [Fact]
+        public void RegisterUser_InvalidEmail_ShouldNotRegisterUser() 
+        {
+            var service = new UserRegistrationService();
+            var email = "invalid-email";
+            var result = service.RegisterUser(email);
+            Assert.False(result);
+            Assert.False(service.IsUserRegistered(email)); 
+ }
+
+        //ZADANIE 3
+
+        [Theory]
+        [InlineData("test@example.com", true)]
+        [InlineData("user123@domain.co", true)]
+        [InlineData("invalid@-email", false)]
+        [InlineData("missingatsign.com", false)]
+        [InlineData("another.test@site", true)]
+        public void Zad3RegisterUser_CheckUsers(string email, bool expectedResult)
+        {
+            var service = new UserRegistrationService();
+
+            var result = service.RegisterUser(email);
+
+            Assert.Equal(expectedResult, result);
+            Assert.Equal(expectedResult, service.IsUserRegistered(email));
+        }
 
     }
 
